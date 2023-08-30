@@ -1,0 +1,55 @@
+
+.ToastEstilizado
+    display: flex
+    flex-direction: column-reverse
+    align-items: center
+    position: absolute
+    border-radius: 10px
+    top: 150px
+    right: 5px
+
+    .ContentToast
+        width: 250px
+        height: 70px
+        border-radius: 10px
+        box-shadow: 0px 0px 5px 0px black
+        font-size: 20px
+        position: relative
+        color: white
+        text-align: center
+        display: flex
+        align-items: center
+        justify-content: center
+        gap: 1rem
+        background-color: rgb(10, 59, 108)
+
+    .Barra
+        position: absolute
+        bottom: 0px
+        left: 4px
+        width: 100%
+        border-radius: 2px
+        background-color: green
+        height: 5px
+        animation: barra 3.2s 1
+
+@keyframes barra
+    from
+        width: 100%
+    to
+        width: 0%
+
+@media screen and (max-width: 767px)
+    .ToastEstilizado
+        width: 100%
+        top: 88%
+        left: 0px
+        background-color: red
+
+        .ContentToast
+            width: 100%
+            height: 100px
+
+        .Barra
+            height: 10px
+            left: 0px

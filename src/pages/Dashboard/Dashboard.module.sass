@@ -1,0 +1,49 @@
+
+.dashboardContainer
+    background-color: #D2D5DD
+    height: 100%
+
+.dashboardInfo
+    background-color: white
+    width: 60%
+    border-radius: 20px
+    height: 550px
+    padding: 20px
+    margin: 50px auto
+    box-shadow: 0px 0px 10px black
+    display: flex
+    flex-direction: column
+    align-items: center
+    gap: 2rem
+
+    .cardAndTable
+        display: flex
+        align-items: center
+
+    .infoCards
+        display: flex
+        // flex-direction: column
+        justify-content: center
+        flex-wrap: wrap
+        width: 100%
+        gap: 1rem
+
+    .grafico
+
+    h1
+        text-align: center
+
+@media screen and (max-width: 767px)
+
+    .dashboardInfo
+        background-color: transparent
+        box-shadow: none
+
+        .cardAndTable
+            display: flex
+            flex-direction: column
+            gap: 2em
+
+        .infoCards
+            flex-direction: row
+            flex-wrap: nowrap

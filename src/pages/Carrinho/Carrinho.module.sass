@@ -1,0 +1,36 @@
+.cardCompra
+    display: flex
+    flex-direction: column-reverse
+    align-items: center
+    background-color: #e6e6e6
+    position: absolute
+    border-radius: 10px
+    top: 150px
+    right: 5px
+
+    .compraRealizada
+        width: 250px
+        height: 70px
+        border-radius: 10px
+        box-shadow: 0px 0px 5px 0px black
+        color: #20d013
+        font-size: 20px
+        position: relative
+        text-align: center
+        display: flex
+        align-items: center
+        background-color: rgb(10, 59, 108)
+
+    .barra
+        position: absolute
+        width: 250px
+        background-color: #20d013
+        height: 5px
+        animation: barra 3s 1
+
+    @keyframes barra
+        from
+            width: 250px
+
+        to
+            width: 0px

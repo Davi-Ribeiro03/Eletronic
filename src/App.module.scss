@@ -1,0 +1,23 @@
+.container{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    
+    .login{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+    }
+
+    .footer{
+        position: absolute;
+        bottom: 0;
+    }
+
+}
+
+

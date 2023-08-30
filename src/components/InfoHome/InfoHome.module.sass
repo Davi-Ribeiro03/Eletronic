@@ -1,0 +1,42 @@
+
+.containerLeft
+    width: 30%
+
+    h2
+        color: white
+        font-size: xx-large
+        margin: 30px 0px
+
+    .descricaoDesktop
+        font-size: small
+        color: white
+        opacity: .7
+
+    .descricaoMobile
+        display: none
+        font-size: small
+        color: white
+        opacity: .7
+
+.containerRight
+    height: 100%
+
+    img
+        width: 280px
+
+@media screen and (max-width: 767px)
+    .containerRight
+        display: none
+
+    .containerLeft
+        h2
+            margin: 0px
+            width: 500px
+
+        .descricaoDesktop
+            display: none
+
+        .descricaoMobile
+            display: block
+            width: 200px
+            margin: 0.5em 0 0 1em

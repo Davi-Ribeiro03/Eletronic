@@ -1,0 +1,47 @@
+
+.productsContainer
+    display: flex
+    flex-wrap: wrap
+
+.product
+    border-radius: 5px
+    width: 150px
+    height: 200px
+    margin: 50px
+    text-align: center
+    background-color: white
+    display: inline-block
+    cursor: pointer
+    transition: .1s
+
+    img
+        height: 120px
+        padding-top: 10px
+    p
+        font-size: small
+        margin-bottom: 15px
+
+    .carrinho
+        margin-left: 10px
+
+    .toastInfo
+        display: flex
+        flex-direction: column
+        gap: 0.2em
+
+    .toastQtd
+        display: flex
+        align-items: center
+        gap: 0.5em
+
+    .toastProduct
+        text-transform: uppercase
+        font-size: 0.6em
+
+@media screen and (max-width: 767px)
+    .product
+        margin: 2em
+        width: 100%
+
+        .toastInfo
+            gap: 0.5em
