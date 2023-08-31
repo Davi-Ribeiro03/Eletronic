@@ -14,6 +14,7 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
   const [erro, setErro] = useState<string>("");
   const [passwordType, setPasswordType] = useState("password");
   const { toastActive, setToastActive } = useContext(ToastContext);
+  const root = document.querySelector("#root") as HTMLElement;
 
   useEffect(() => {
     const timeOut = setTimeout(() => {
@@ -89,7 +90,7 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
           <Toast barra={true} color="red">
             <strong className={styles.toastErro}> {erro} </strong>
           </Toast>,
-          document.body
+          root
         )}
     </div>
   );

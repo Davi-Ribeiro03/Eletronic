@@ -25,7 +25,7 @@ function App() {
   }, [userData]);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containerApp}>
       <div className={styles.login}>
         <ToastProvider>
           <CardLogin setUserData={setUserData} />
