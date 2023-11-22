@@ -13,6 +13,8 @@ import { CartContext } from "../../context/CartContext";
 import Toast from "../../components/Toast/Toast";
 import { createPortal } from "react-dom";
 import { ToastContext } from "../../context/ToastContext";
+import { timeToast } from "../../utils/timeToast";
+import { FaCheck } from "react-icons/fa";
 
 const ContainerGeral = styled.div`
   height: 100vh;
@@ -52,16 +54,26 @@ const BotaoComprar = styled.button`
   height: 50px;
   border-radius: 10px;
   font-weight: bolder;
-  background-color: #42ff33;
+  background-color: #41ff33df;
   cursor: pointer;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (max-width: 576px) {
+    width: 60%;
+    gap: 5px;
+  }
 `;
 
-const CompraRealizada = styled.h1`
-  text-align: center;
-  color: green;
-  margin: 20px auto;
-  text
-`;
+// const CompraRealizada = styled.h1`
+//   text-align: center;
+//   color: green;
+//   margin: 20px auto;
+//   text
+// `;
 
 const Carrinho = () => {
   const dispatch = useDispatch();
@@ -72,9 +84,7 @@ const Carrinho = () => {
 
   useEffect(() => {
     if (toastActive === true) {
-      const timeout = setTimeout(() => {
-        setToastActive(false);
-      }, 3000);
+      const timeout = timeToast({ setToastActive });
       return () => clearTimeout(timeout);
     }
   }, [toastActive]);
@@ -82,25 +92,31 @@ const Carrinho = () => {
   return (
     <ContainerGeral>
       <Navbar />
-      <Container>
+      {/* <Container>
         <Section>
           <H1>Carrinho</H1>
           <H1>de</H1>
           <H1>Compras</H1>
         </Section>
         <ImgEstilizada src={carrinho} alt="Carrinho de compras" />
-      </Container>
+      </Container> */}
+
+      <div className={styles.tituloCart}>
+        <img src={carrinho} alt="Carrinho de compras" />
+        <h3>Carrinho de compras</h3>
+      </div>
 
       <ProductsCart />
       {toastActive === true &&
         createPortal(
           <Toast color="#20d013" barra={true}>
-            Compra Realizada com sucesso
+            Compra realizada com sucesso
           </Toast>,
           document.body
         )}
       <Section>
         <BotaoComprar
+          data-testid="botaoComprar"
           disabled={
             products.some((product) => product.productInCart === true) === false
               ? true
@@ -111,7 +127,8 @@ const Carrinho = () => {
             setToastActive(true);
           }}
         >
-          Comprar
+          Finalizar compra
+          <FaCheck color="white" />
         </BotaoComprar>
       </Section>
     </ContainerGeral>

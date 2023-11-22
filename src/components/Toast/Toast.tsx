@@ -55,12 +55,17 @@ const Toast = ({
   barra: boolean;
 }) => {
   return (
-    <div className={styles.ToastEstilizado}>
-      <section className={styles.ContentToast} color={color}>
+    <div className={styles.ToastEstilizado} data-testid="toast">
+      <section
+        className={styles.ContentToast}
+        color={color}
+        data-testid="textToast"
+      >
         {children}
       </section>
       {barra === true && (
         <div
+          data-testid="toastBarra"
           className={styles.Barra}
           color={color}
           style={{ backgroundColor: `${color}` }}

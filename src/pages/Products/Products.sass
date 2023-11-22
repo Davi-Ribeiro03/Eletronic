@@ -3,12 +3,13 @@
     width: 100vw
     height: 100vh
     position: relative
+    color: white
 
     h1
         text-align: center
 
     .product
-        border: 1px solid black
+        border: 1px solid white
         margin: 30px 10px
         width: 220px
         display: inline-block
@@ -33,55 +34,3 @@
         width: 200px
         cursor: pointer
         margin: 20px
-
-.modalOverlay
-    background: #ecececda
-    position: fixed
-    top: 0
-    display: flex
-    justify-content: center
-    align-items: center
-    width: 100vw
-    height: 100vh
-
-.modal
-    display: flex
-    justify-content: center
-    width: 50%
-    max-width: 400px
-    background-color: white
-    padding: 10px
-    border-radius: 5px
-    border: .5px solid black
-
-    div
-        display: flex
-        flex-direction: column
-        width: 100%
-        margin: 30px auto
-        padding-right: 10px
-        justify-content: center
-        position: relative
-
-        input
-
-            width: 80%
-            border-radius: 2px
-            outline: none
-            height: 20px
-            border: none
-            border-bottom: 1px black solid
-
-        input::placeholder
-            font-size: x-small
-
-    button
-        height: 30px
-        border: none
-        width: 100%
-        display: inline-block
-        margin: 5px
-        background-color: rgb(39, 113, 186)
-        color: white
-        border-radius: 5px
-        cursor: pointer

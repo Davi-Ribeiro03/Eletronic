@@ -7,6 +7,11 @@ import { setUserDataType } from "./setDataUserType.type";
 import Toast from "../Toast/Toast";
 import { createPortal } from "react-dom";
 import { ToastContext } from "../../context/ToastContext";
+import { timeToast } from "../../utils/timeToast";
+import Modal from "react-modal";
+
+const root = document.querySelector("#root") as HTMLElement;
+Modal.setAppElement(root);
 
 const CardLogin = ({ setUserData }: setUserDataType) => {
   const [user, setUser] = useState<string>("");
@@ -14,13 +19,10 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
   const [erro, setErro] = useState<string>("");
   const [passwordType, setPasswordType] = useState("password");
   const { toastActive, setToastActive } = useContext(ToastContext);
-  const root = document.querySelector("#root") as HTMLElement;
+  const app = document.querySelector("#containerApp") as HTMLElement;
 
   useEffect(() => {
-    const timeOut = setTimeout(() => {
-      setToastActive(false);
-      setErro("");
-    }, 3000);
+    const timeOut = timeToast({ setToastActive, setErro });
 
     return () => clearTimeout(timeOut);
   }, [toastActive]);
@@ -31,30 +33,37 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
         Bem vindos ao <strong>Login</strong>
       </h3>
 
-      <p>Preencha os dados do login para acessar</p>
+      <p data-testid="CardLoginAviso">
+        Preencha os dados do login para acessar
+      </p>
 
       <div className={styles.usuario}>
         <label>Usuário</label>
         <input
+          data-testid="loginUser"
           type="text"
           placeholder="Usuário"
           value={user}
           onChange={(e) => setUser(e.target.value)}
         />
         <span>
-          <BiSolidUser cursor="pointer" />
+          <BiSolidUser cursor="pointer" data-testid="usuario" />
         </span>
       </div>
 
       <div className={styles.senha}>
         <label>Senha</label>
         <input
+          data-testid="loginPassword"
           type={passwordType}
           placeholder="Senha"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
         />
         <span
+          data-testid="eye"
           onClick={() =>
             passwordType === "password"
               ? setPasswordType("text")
@@ -62,7 +71,7 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
           }
         >
           {passwordType === "password" ? (
-            <AiFillEyeInvisible cursor="pointer" />
+            <AiFillEyeInvisible cursor="pointer" data-testid="senhaEscondida" />
           ) : (
             <AiFillEye cursor="pointer" />
           )}
@@ -70,6 +79,7 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
       </div>
 
       <button
+        data-testid="entrar"
         onClick={() => {
           if (user === "") {
             setToastActive(true);
@@ -88,9 +98,12 @@ const CardLogin = ({ setUserData }: setUserDataType) => {
       {toastActive === true &&
         createPortal(
           <Toast barra={true} color="red">
-            <strong className={styles.toastErro}> {erro} </strong>
+            <strong className={styles.toastErro} data-testid="erroDeCampoVazio">
+              {" "}
+              {erro}{" "}
+            </strong>
           </Toast>,
-          root
+          app
         )}
     </div>
   );

@@ -22,9 +22,7 @@ const Grafico = () => {
     return dados;
   }
 
-  const Grafico = styled.section`
-    background-color: red;
-  `;
+  const Grafico = styled.section``;
 
   return (
     <Grafico>
@@ -37,7 +35,7 @@ const Grafico = () => {
           <XAxis dataKey="aparelho" />
           <YAxis />
           <Tooltip />
-          <Bar dataKey="qtdVendas" fill="#083860" barSize={30}></Bar>
+          <Bar dataKey="qtdVendas" fill="#2a2af0" barSize={30}></Bar>
         </BarChart>
       </ResponsiveContainer>
     </Grafico>

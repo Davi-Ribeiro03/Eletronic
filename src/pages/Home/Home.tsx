@@ -9,7 +9,7 @@ import ProductsHome from "../../components/ProductsHome/ProductsHome";
 
 const Home = () => {
   return (
-    <div className={styles.home}>
+    <div className={styles.home} id="home">
       <Navbar />
       <InfoHome />
       <ProductsHome />

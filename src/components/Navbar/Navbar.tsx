@@ -5,6 +5,7 @@ import { removeInStore } from "../../store/reducers/userInfo";
 import styles from "./Navbar.module.sass";
 import { BsCart3 } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
+import logo from "../../img/logo.png";
 
 const Navbar = () => {
   const pages = [
@@ -23,6 +24,7 @@ const Navbar = () => {
 
   return (
     <div className={styles.container}>
+      {/* <img src={logo} alt="logoMarca" /> */}
       <h1>Logo</h1>
 
       <div className={styles.navbar__menu}>
@@ -31,16 +33,25 @@ const Navbar = () => {
             (page) =>
               location.pathname !== page.location &&
               (page.name === "Carrinho" ? (
-                <Link to={page.location} key={page.name}>
+                <Link
+                  to={page.location}
+                  key={page.name}
+                  data-testid="linkNavigate"
+                >
                   <BsCart3 className={styles.cart} />
                 </Link>
               ) : (
-                <Link to={page.location} key={page.name}>
+                <Link
+                  to={page.location}
+                  key={page.name}
+                  data-testid="linkNavigate"
+                >
                   {page.name}
                 </Link>
               ))
           )}
           <Link
+            data-testid="logout"
             to={"/"}
             onClick={() => {
               dispatch(removeInStore());
@@ -53,8 +64,9 @@ const Navbar = () => {
         </ul>
 
         <AiOutlineMenu
+          data-testid="menu_hamburguer"
           size={30}
-          color="black"
+          color="white"
           className={styles.navbar__menu_hamburger}
           onClick={() => toggleHamburguerMenuMode()}
         />

@@ -9,9 +9,12 @@ import { ProductsType } from "../../types/ProductsType.type";
 import Grafico from "../../components/Grafico/Grafico";
 import { styled } from "styled-components";
 import Tabela from "../../components/Tabela/Tabela";
+import { Chart } from "../../components/Grafico/Chart";
+import { calculaValorTotal } from "../../utils/calculaValorTotal";
+import { verificaRoleAdmin } from "../../utils/verificaRole";
 
 const H1 = styled.h1`
-  color: #083860;
+  color: white;
 `;
 
 const Dashboard = () => {
@@ -25,15 +28,10 @@ const Dashboard = () => {
     }
   );
 
-  let productsValue = 0;
-  products.forEach((product) => {
-    productsValue += product.value;
-  });
+  const productsValue = calculaValorTotal(products);
 
   useEffect(() => {
-    if (userInfo.role !== "admin") {
-      navigate("/ErrorPage");
-    }
+    !verificaRoleAdmin(userInfo.role) && navigate("/ErrorPage");
   }, []);
 
   return (
@@ -41,7 +39,7 @@ const Dashboard = () => {
       <Navbar />
 
       <div className={styles.dashboardInfo}>
-        <H1>Dashboard</H1>
+        <H1 data-testid="dashboard">Dashboard</H1>
         <section className={styles.cardAndTable}>
           <div className={styles.infoCards}>
             <DashboardInfo
@@ -56,7 +54,10 @@ const Dashboard = () => {
           <Tabela />
         </section>
 
-        <Grafico />
+        <Chart />
+        {/* <div style={{ width: "80%", height: "300px" }}>
+          <Grafico />
+        </div> */}
       </div>
     </div>
   );

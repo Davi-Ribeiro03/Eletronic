@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { ProductsType } from "../../types/ProductsType.type";
 import "./Tabela.sass";
 
-function ProductsInfo() {
+export function ProductsInfo() {
   const products = useSelector(
     (state: { products: ProductsType[] }) => state.products
   );
@@ -22,7 +22,7 @@ function Tabela() {
       </thead>
       <tbody>
         {ProductsInfo().map((product: ProductsType, index: number) => (
-          <tr key={product.id}>
+          <tr key={product.id} data-testid="linhasTabela">
             <td>{product.name}</td>
             <td>{product.stock}</td>
             <td>R${product.value}</td>

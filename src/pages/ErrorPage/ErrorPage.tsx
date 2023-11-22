@@ -17,11 +17,7 @@ const ErrorPage = () => {
 
       <button
         onClick={() => {
-          if (userInfo.role === "") {
-            navigate("/");
-          } else {
-            navigate("/Home");
-          }
+          navigate("/Home");
         }}
       >
         Voltar

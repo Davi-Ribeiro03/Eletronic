@@ -5,8 +5,10 @@
     align-items: center
     position: absolute
     border-radius: 10px
-    top: 150px
-    right: 5px
+    top: 120px
+    right: 30px
+    // top: 0px
+    // right: 0px
 
     .ContentToast
         width: 250px
@@ -39,14 +41,15 @@
     to
         width: 0%
 
-@media screen and (max-width: 767px)
+@media screen and (max-width: 576px)
     .ToastEstilizado
         margin: 0 auto
         width: 90%
+        left: 5%
+        right: 5%
         top: auto
-        bottom: 80px
-        left: 0px
-        background-color: red
+        bottom: 30px
+        // z-index: -1
 
         .ContentToast
             width: 100%

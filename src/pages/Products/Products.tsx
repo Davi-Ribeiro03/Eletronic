@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import Modal from "react-modal";
 import { useState } from "react";
 import "./Products.sass";
 import { useSelector, useDispatch } from "react-redux";
@@ -10,26 +9,22 @@ import { FormContext } from "../../context/FormContext";
 import { UserDataType } from "../../types/UserDataType";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
+import CustomModal from "../../components/Modal/CustomModal";
+import Modal from "react-modal";
 
-Modal.setAppElement("#root");
+const root = document.querySelector("#root") as HTMLElement;
+Modal.setAppElement(root);
 
 const Products = () => {
-  const [modalIsOpen, setIsOpen] = useState(false);
   const products = useSelector(
     (state: { products: ProductsType[] }) => state.products
   );
   const dispatch = useDispatch();
-  const { product, setProduct, initialProduct } = useContext(FormContext);
   const navigate = useNavigate();
   const userInfo = useSelector(
     (state: { userInfo: UserDataType }) => state.userInfo
   );
-
-  useEffect(() => {
-    if (userInfo.role === "") {
-      navigate("/ErrorPage");
-    }
-  }, []);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -44,12 +39,13 @@ const Products = () => {
       <Navbar />
 
       {products.map((product) => (
-        <div key={product.id} className="product">
-          <h3>Produto: {product.name}</h3>
+        <div key={product.id} className="product" data-testid="products">
+          <h3 data-testid="productsName">Produto: {product.name}</h3>
           <strong>Valor: R${product.value}</strong>
           <p>{product.description}</p>
           {/* <img src={product.image} alt="" /> */}
           <AiFillCloseCircle
+            data-testid="removeProduct"
             color="red"
             className="close"
             onClick={() => dispatch(removeProduct(product.id))}
@@ -57,80 +53,18 @@ const Products = () => {
         </div>
       ))}
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        contentLabel="form Modal"
-        overlayClassName="modalOverlay"
-        className="modal"
+      <CustomModal
+        data-testid="modal"
+        modalIsOpen={modalIsOpen}
+        setIsOpen={setIsOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+      />
+      <button
+        data-testid="cadastrar-produto"
+        className="button-cadastrar"
+        onClick={() => openModal()}
       >
-        <form action="">
-          <h2>Cadastro de produto</h2>
-          <div className="name">
-            <label>Nome</label>
-            <input
-              type="text"
-              placeholder="Nome do produto"
-              onChange={(e) => setProduct({ ...product, name: e.target.value })}
-            />
-          </div>
-          <div className="description">
-            <label>Descrição</label>
-            <input
-              type="text"
-              placeholder="Descrição do produto"
-              onChange={(e) =>
-                setProduct({ ...product, description: e.target.value })
-              }
-            />
-          </div>
-          <div className="image">
-            <label>Imagem</label>
-            <input
-              type="text"
-              placeholder="Url da imagem"
-              onChange={(e) => {
-                setProduct({ ...product, image: e.target.value });
-              }}
-            />
-          </div>
-          <div className="value">
-            <label>Valor</label>
-            <input
-              type="number"
-              placeholder="Valor do produto"
-              onChange={(e) =>
-                setProduct({ ...product, value: parseInt(e.target.value) })
-              }
-            />
-          </div>
-          <div className="quantidade">
-            <label>Quantidade de produtos</label>
-            <input
-              type="number"
-              placeholder="quantidade de produtos"
-              onChange={(e) =>
-                setProduct({ ...product, stock: parseInt(e.target.value) })
-              }
-            />
-          </div>
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              if (product.name !== "") {
-                dispatch(addProduct(product));
-                setProduct({ ...initialProduct });
-                closeModal();
-              }
-            }}
-          >
-            Cadastrar
-          </button>
-          <button onClick={closeModal}>Sair</button>
-        </form>
-      </Modal>
-
-      <button className="button-cadastrar" onClick={openModal}>
         Cadastrar novo produto
       </button>
     </div>

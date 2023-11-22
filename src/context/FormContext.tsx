@@ -27,7 +27,13 @@ export const FormProvider = ({ children }: ProviderType) => {
   };
 
   return (
-    <FormContext.Provider value={{ product, setProduct, initialProduct }}>
+    <FormContext.Provider
+      value={{
+        product,
+        setProduct,
+        initialProduct,
+      }}
+    >
       {children}
     </FormContext.Provider>
   );

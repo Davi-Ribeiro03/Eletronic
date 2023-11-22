@@ -1,5 +1,14 @@
 .footer{
-    background-color:rgb(39, 113, 186);
+    background-color:rgba(39, 112, 186, 0.734);
     width: 100vw;
     height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+    h3{
+        color: white;
+        font-size: 15px;
+        padding-left: 20px;
+    }
 }

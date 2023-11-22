@@ -14,7 +14,9 @@ const DashboardInfo = ({
     <div className={styles.dashboardInfo}>
       <p>{titulo}</p>
       {quantidade && <strong>{quantidade}</strong>}
-      {value && <strong>R${value},00</strong>}
+      {value && (
+        <strong data-testid="valorTotalDeProdutos">R${value},00</strong>
+      )}
     </div>
   );
 };

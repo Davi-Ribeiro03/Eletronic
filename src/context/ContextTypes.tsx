@@ -9,6 +9,10 @@ export type FormContextType = {
   product: ProductsType;
   setProduct: Function;
   initialProduct: ProductsType;
+  // modalIsOpen: boolean;
+  // setIsOpen: Function;
+  // openModal: Function;
+  // closeModal: Function;
 };
 
 export type CartContextType = {

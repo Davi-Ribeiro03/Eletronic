@@ -6,7 +6,7 @@ import notebook from "../../img/notebook.png";
 import tvBox from "../../img/tv_box.png";
 import { v4 as uuid } from "uuid";
 
-let initialState: ProductsType[] = [
+export let initialState: ProductsType[] = [
   {
     id: uuid(),
     name: "celular",
@@ -59,8 +59,8 @@ let registeredProducts = localStorage.getItem("products");
 if (registeredProducts !== null) {
   const registeredProductsArray = JSON.parse(registeredProducts);
 
-  if (registeredProducts.length !== initialState.length)
-    initialState = registeredProductsArray;
+  // if (registeredProducts.length !== initialState.length)
+  initialState = registeredProductsArray;
 }
 
 const productsSlice = createSlice({
@@ -107,10 +107,19 @@ const productsSlice = createSlice({
       localStorage.setItem("products", JSON.stringify(state));
       return state;
     },
-    removeProductFromCart(state, { payload }) {
+    reduceProductFromCart(state, { payload }) {
       state.map((product, index) => {
         if (product.id === payload) {
           --state[index].qtInCart;
+        }
+      });
+    },
+
+    removeProductFromCart(state, { payload }) {
+      state.map((product, index) => {
+        if (product.id === payload) {
+          state[index].productInCart = false;
+          state[index].qtInCart = 0;
         }
       });
 
@@ -127,5 +136,6 @@ export const {
   removeAllOfTheCart,
   addProductInCart,
   removeProductFromCart,
+  reduceProductFromCart,
 } = productsSlice.actions;
 export default productsSlice.reducer;
